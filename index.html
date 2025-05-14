@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women Safety App - Your Personal Safety Companion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-pink: #FF80AB;
+            --secondary-pink: #F06292;
+            --light-pink: #F8BBD0;
+            --dark-pink: #C2185B;
+            --gradient-pink: linear-gradient(135deg, #FF80AB, #F06292);
+            --gradient-dark: linear-gradient(135deg, #C2185B, #880E4F);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar-brand {
+            color: var(--primary-pink) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Enhanced Hero Section */
+        .hero-section {
+            background: var(--gradient-pink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* Enhanced Feature Cards */
+        .feature-card {
+            border: none;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-pink);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-card i {
+            color: var(--primary-pink);
+            transition: all 0.3s ease;
+            background: var(--light-pink);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--gradient-pink);
+            color: white;
+        }
+
+        /* Enhanced Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark-pink), #880E4F);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L60 30L30 60L0 30L30 0z" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            opacity: 0.5;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-pink);
+        }
+
+        /* Enhanced Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--light-pink);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Enhanced Contact Form */
+        .contact-section {
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 20px;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 0.2rem rgba(255, 128, 171, 0.25);
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-pink), #880E4F);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-pink);
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L60 30L30 60L0 30L30 0z" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer h5 {
+            color: var(--light-pink);
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--light-pink);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 10px;
+        }
+
+        .footer .list-unstyled a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer .list-unstyled a:hover {
+            color: var(--light-pink);
+            transform: translateX(5px);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            margin: 0 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--light-pink);
+            transform: translateY(-3px) rotate(360deg);
+            border-color: var(--light-pink);
+            color: var(--dark-pink);
+        }
+
+        .footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+        }
+
+        .footer .text-center p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: var(--gradient-pink);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 128, 171, 0.6);
+        }
+
+        .btn-outline-light {
+            border: 2px solid white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: var(--dark-pink);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-pink);
+            border-radius: 2px;
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Enhanced Screenshots Section */
+        .screenshots-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .screenshot-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 450px;
+            width: 300px;
+            margin: 0 auto;
+            background: white;
+            padding: 10px;
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Desktop Grid Layout */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .screenshots-grid .screenshot-card {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* Mobile/Tablet Carousel */
+        .swiper-container {
+            display: none;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--dark-pink);
+            transform: scale(1.1);
+        }
+
+        .swiper-pagination {
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: var(--light-pink);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--primary-pink);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 1200px) {
+            .screenshots-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .screenshots-grid {
+                display: none;
+            }
+
+            .swiper-container {
+                display: block;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+                font-size: 16px;
+            }
+
+            .screenshot-card {
+                height: 350px;
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 35px;
+                height: 35px;
+            }
+
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+                font-size: 14px;
+            }
+
+            .screenshot-card {
+                height: 300px;
+                width: 200px;
+            }
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: var(--gradient-pink);
+            padding: 100px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+
+            .hero-section img {
+                margin-left: 0 !important;
+                max-width: 100%;
+            }
+
+            .download-section img {
+                margin-left: 0 !important;
+                max-width: 100%;
+            }
+
+            .screenshot-card {
+                height: 400px;
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 0.5rem 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .navbar-brand img {
+                height: 35px;
+            }
+
+            .hero-section {
+                text-align: center;
+                padding: 120px 0 60px;
+            }
+
+            .hero-content {
+                margin-bottom: 40px;
+            }
+
+            .hero-section .d-flex {
+                justify-content: center;
+            }
+
+            .feature-card {
+                margin-bottom: 30px;
+            }
+
+            .testimonial-card {
+                margin-bottom: 30px;
+            }
+
+            .download-section {
+                text-align: center;
+            }
+
+            .download-section .d-flex {
+                justify-content: center;
+            }
+
+            .screenshot-card {
+                height: 350px;
+                width: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-card {
+                margin-bottom: 20px;
+            }
+
+            .stat-card h2 {
+                font-size: 2.5rem;
+            }
+
+            .step-card {
+                margin-bottom: 30px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .screenshot-card {
+                height: 300px;
+                width: 200px;
+            }
+
+            .footer {
+                text-align: center;
+            }
+
+            .footer h5::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 100px 0 40px;
+            }
+
+            .hero-badge {
+                font-size: 0.8rem;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .btn-lg {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-card h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card {
+                padding: 20px !important;
+            }
+
+            .feature-card i {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .screenshot-card {
+                height: 250px;
+                width: 180px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .contact-form {
+                padding: 15px;
+            }
+        }
+
+        /* Enhanced Responsive Navigation */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-pink);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-pink);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            transform: translateY(-8px);
+        }
+
+        .navbar-toggler-icon::after {
+            transform: translateY(8px);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+        }
+
+        /* Enhanced Responsive Images */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Enhanced Responsive Grid */
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+        .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+        .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+        .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* Enhanced Responsive Spacing */
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/img_splash.png" alt="Logo">
+                Women Safety
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#screenshots">Screenshots</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="hero-badge">
+                        <i class="fas fa-shield-alt me-2"></i>Your Safety is Our Priority
+                    </span>
+                    <h1 class="display-4 fw-bold text-white mb-4">Your Personal Safety Companion</h1>
+                    <p class="lead text-white mb-4">A comprehensive safety solution for women, featuring real-time location tracking, emergency alerts, and instant help at your fingertips.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-light btn-lg">
+                            <i class="fab fa-google-play me-2"></i>Download Now
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg">Explore Features</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="img/hero1.png" alt="App Preview" class="img-fluid" height="400px" width="400px" style="margin-left: 250px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800">
+                    <div class="stat-card">
+                        <h2 class="display-4 fw-bold text-white">24/7</h2>
+                        <p class="text-white">Active Protection</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="stat-card">
+                        <h2 class="display-4 fw-bold text-white">100%</h2>
+                        <p class="text-white">Real-time Tracking</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="stat-card">
+                        <h2 class="display-4 fw-bold text-white">Instant</h2>
+                        <p class="text-white">Emergency Response</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="stat-card">
+                        <h2 class="display-4 fw-bold text-white">24/7</h2>
+                        <p class="text-white">Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title mb-5" data-aos="fade-up">How It Works</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Download & Register</h4>
+                        <p>Download the app and create your account with basic information.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Add Trusted Contacts</h4>
+                        <p>Add your trusted contacts who will receive alerts in emergencies.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Stay Protected</h4>
+                        <p>Enable location tracking and start using the safety features.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="section-title mb-5" data-aos="fade-up">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-shield-alt fa-3x mb-3"></i>
+                        <h4>Real-time Location Tracking</h4>
+                        <p>Continuous background location monitoring with live updates to trusted contacts and emergency services.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-bell fa-3x mb-3"></i>
+                        <h4>Smart Emergency Alert</h4>
+                        <p>One-tap SOS with volume key trigger, automatic alerts to emergency contacts, and instant police notification.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h4>Trusted Contacts Network</h4>
+                        <p>Add and manage trusted contacts who receive real-time updates and emergency notifications.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-robot fa-3x mb-3"></i>
+                        <h4>AI Chatbot Support</h4>
+                        <p>24/7 AI-powered chatbot for immediate assistance and guidance in emergency situations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-fist-raised fa-3x mb-3"></i>
+                        <h4>Self-Defense Resources</h4>
+                        <p>Access to self-defense tutorials, emergency helpline numbers, and safety tips.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="feature-card p-4">
+                        <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+                        <h4>Safe Route Navigation</h4>
+                        <p>Smart navigation through well-lit and populated areas with real-time safety alerts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots-section">
+        <div class="container">
+            <h2 class="section-title mb-5" data-aos="fade-up">App Screenshots</h2>
+            <!-- Desktop Grid Layout -->
+            <div class="screenshots-grid">
+                <div class="screenshot-card" data-aos="fade-up" data-aos-duration="800">
+                    <img src="img/screenshot1.png" alt="App Screenshot">
+                </div>
+                <div class="screenshot-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <img src="img/screenshot2.png" alt="App Screenshot">
+                </div>
+                <div class="screenshot-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <img src="img/screenshot3.png" alt="App Screenshot">
+                </div>
+                <div class="screenshot-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <img src="img/screenshot4.png" alt="App Screenshot">
+                </div>
+            </div>
+            <!-- Mobile/Tablet Carousel -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="screenshot-card">
+                            <img src="img/screenshot1.png" alt="App Screenshot">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="screenshot-card">
+                            <img src="img/screenshot2.png" alt="App Screenshot">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="screenshot-card">
+                            <img src="img/screenshot3.png" alt="App Screenshot">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="screenshot-card">
+                            <img src="img/screenshot4.png" alt="App Screenshot">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="display-4 fw-bold text-white mb-4">Download Our App</h2>
+                    <p class="lead text-white mb-4">Get instant access to all safety features and start protecting yourself today.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-light btn-lg">
+                            <i class="fab fa-google-play me-2"></i>Google Play
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-lg">
+                            <i class="fab fa-apple me-2"></i>App Store
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="img/img-download.png" alt="Download" class="img-fluid floating" width="250px" height="250px" style="margin-left: 250px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="section-title mb-5" data-aos="fade-up">What Our Users Say</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="img/user1.jpg" alt="User" class="rounded-circle" width="60">
+                            <div class="ms-3">
+                                <h5 class="mb-0">Sarah Johnson</h5>
+                                <small class="text-muted">Regular User</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"This app has given me so much confidence when traveling alone. The real-time location sharing feature is a game-changer!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="img/user2.jpg" alt="User" class="rounded-circle" width="60">
+                            <div class="ms-3">
+                                <h5 class="mb-0">Emily Chen</h5>
+                                <small class="text-muted">Student</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The SOS feature is incredibly reliable. I feel much safer knowing help is just one tap away."</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="img/user3.jpg" alt="User" class="rounded-circle" width="60">
+                            <div class="ms-3">
+                                <h5 class="mb-0">Maria Garcia</h5>
+                                <small class="text-muted">Working Professional</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The safe route navigation feature has helped me find safer paths home after late work hours."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container">
+            <h2 class="section-title mb-5" data-aos="fade-up">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form" data-aos="fade-up" data-aos-duration="800">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-shield-alt me-2"></i>Women Safety</h5>
+                    <p>Empowering women through technology and community support.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white">Home</a></li>
+                        <li><a href="#features" class="text-white">Features</a></li>
+                        <li><a href="#how-it-works" class="text-white">How It Works</a></li>
+                        <li><a href="#screenshots" class="text-white">Screenshots</a></li>
+                        <li><a href="#contact" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Women Safety App. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced Swiper Configuration
+        new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                }
+            },
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+            },
+        });
+    </script>
+</body>
+</html> 
